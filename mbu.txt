@@ -1,0 +1,55 @@
+CREATE TABLE users(
+	userID int AUTO_INCREMENT NOT NULL,
+    firstName varchar(255) NOT NULL,
+    secondName varchar(255) NOT NULL,
+    email varchar(255) NOT NULL,
+    pass varchar(255) NOT NULL,
+    isAdmin boolean NOT NULL,
+   
+    PRIMARY KEY(userID)
+);
+
+CREATE TABLE profilePage(
+	profileID int AUTO_INCREMENT NOT NULL,
+    userID int NOT NULL,
+    bio varchar(255) NOT NULL,
+    picture longblob,
+    
+    PRIMARY KEY(profileID),
+    FOREIGN KEY(userID) REFERENCES users(userID)
+);
+
+CREATE TABLE following(
+	userID int NOT NULL,
+    followerID int NOT NULL,
+    
+    PRIMARY KEY(userID, followerID)
+);
+
+CREATE TABLE posts(
+	postID int NOT NULL AUTO_INCREMENT,
+    userID int NOT NULL,
+    body varchar(181) NOT NULL,
+    timeStamp DATETIME NOT NULL,
+    numOfLikes int,
+    
+    PRIMARY KEY(postID),
+    FOREIGN KEY(userID) REFERENCES users(userID)
+);
+
+CREATE TABLE comments(
+	commentID int NOT NULL AUTO_INCREMENT,
+    userID int NOT NULL,
+    postID int NOT NULL,
+    body varchar(181) NOT NULL,
+    
+    PRIMARY KEY(commentID),
+    FOREIGN KEY(userID) REFERENCES users(userID),
+    FOREIGN KEY(postID) REFERENCES posts(postID)
+);
+
+//HASHING PASSWORDS.
+echo hash('md5','renan123');
+
+
+$query = "SELECT users.firstName,users.secondName,profilePage.bio,profilePage.picture FROM users LEFT JOIN profilePage ON users.userID = profilePage.userID WHERE users.userID = '$usrID';";
