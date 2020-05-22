@@ -1,3 +1,5 @@
+CREATE DATABASE guarana_socialnetwork;
+
 CREATE TABLE users(
 	userID int AUTO_INCREMENT NOT NULL,
     firstName varchar(255) NOT NULL,
