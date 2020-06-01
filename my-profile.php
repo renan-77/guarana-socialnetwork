@@ -3,6 +3,13 @@
 <head>
     <?php 
         session_start();
+
+        if(isset($_POST['edit'])){
+            header("Location: edit-profile.php");
+        }if(isset($_POST['feed'])){
+            header("Location: my-profile.php");
+        }
+
         function getData($usrID){
             //Creating variables to store connection data.
             $dbuser = "root";
@@ -41,10 +48,17 @@
                 <div class="signup-content">
                         <div class="profile">
                             <h2 class="form-title" style="color: purple">Guarana - Profile</h2>
+                            <!--Displaying user image-->
                             <?php echo '<img width="200px" height="200px" alt="profile pic" src="data:image/jpeg;base64,'.base64_encode( getData($_SESSION['userID'])[3] ).'"/>'; ?>
                             <!-- <img src="images/naruto_avatar.jpeg" width="200px" height="200px" alt="profile pic"> -->
+                            <!--Displaying user firstname and lastname-->
                             <h1><?php echo strtoupper(getData($_SESSION['userID'])[0] . " " . getData($_SESSION['userID'])[1])  ?></h1>
                             <p style="text-align: justify"><?php echo strtoupper(getData($_SESSION['userID'])[2]) ?></p>
+                            <form method="post">
+                                <!--Buttons to edit page or go to feed (feed not developed)-->
+                                <input type="submit" name="edit" id="edit" class="form-submit-purple" value="edit"/>
+                                <input type="submit" name="feed" id="feed" class="form-submit-purple" value="feed"/>
+                            </form>
                         </div>
                 </div>
             </div>

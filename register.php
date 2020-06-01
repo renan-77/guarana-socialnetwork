@@ -27,12 +27,15 @@
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $count = mysqli_num_rows($result);
             
+            //Checking for valid email.
             if($firstName != "" && $secondName != "" && $email != "" && $password != ""){
                 if(strpos($email,'@') === false || strpos($email,'.') === false){
                     echo '<p style="text-align: center; color: red; font-size: 2em">Please insert a valid email</p>';
                 }else{
+                    //Checking if email is already registered in database.
                     if($count == 1){
                        echo  '<p style="text-align: center; color: red; font-size: 2em">Sorry, this email is already in use</p>';
+                    //Creating new user based on his inputs in case email is not in use.
                     }else{
                         echo '<p style="text-align: center; color: blue; font-size: 2em">You have successfully registered.<p>';
                         $query = "INSERT INTO users(firstName, secondName, email, pass, isAdmin) VALUES
@@ -62,6 +65,7 @@
         <section class="signup">
             <!-- <img src="images/signup-bg.jpg" alt=""> -->
             <div class="container">
+            <!-- Form created to input new user values for sign up. -->
                 <div class="signup-content">
                     <form method="POST" id="signup-form" class="signup-form">
                         <h2 class="form-title" style="color: purple">Guarana - Create account</h2>

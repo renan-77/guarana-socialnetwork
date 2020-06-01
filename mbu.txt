@@ -51,7 +51,9 @@ CREATE TABLE comments(
 );
 
 //HASHING PASSWORDS.
-echo hash('md5','renan123');
+echo hash('md5','password');
 
 
 $query = "SELECT users.firstName,users.secondName,profilePage.bio,profilePage.picture FROM users LEFT JOIN profilePage ON users.userID = profilePage.userID WHERE users.userID = '$usrID';";
+
+echo '<input class="input101" type="text" name="bio" value="'. strtoupper(getData($usr_id)[2]) .'" maxlength = "180"/>';

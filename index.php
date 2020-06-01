@@ -48,6 +48,7 @@
                 $_SESSION['userID'] = getData($email)[0];
                 header("Location: my-profile.php");
                 
+            //Telling user credentials are wrong.
             }else{
                 echo '<p style="text-align: center; color: red; font-size: 2em">Sorry, credentials are wrong.<p>';
             }
@@ -80,6 +81,7 @@
             <!-- <img src="images/signup-bg.jpg" alt=""> -->
             <div class="container">
                 <div class="signup-content">
+                <!-- Form created to input user details to login. -->
                     <form method="POST" id="signup-form" class="signup-form">
                         <h2 class="form-title" style="color: purple">Guarana - Login</h2>
                         <div class="form-group">
